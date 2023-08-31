@@ -22,16 +22,15 @@ public class Alice {
             fileInput.read(bArray);
             System.out.println("file selected");
 
+            //RECEIVE PUBLIC KEY
             Socket s = new Socket("localhost",5555);
-
             ObjectInputStream objectInputStream = new ObjectInputStream(s.getInputStream());
-            byte[] publicKetBytes = (byte[]) objectInputStream.readObject();
-            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKetBytes));
+            byte[] publicKeyBytes = (byte[]) objectInputStream.readObject();
+            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
 
-
-            Cipher cipherRSA = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            //ENCRYPT FILE
+            Cipher cipherRSA = Cipher.getInstance("RSA");
             cipherRSA.init(Cipher.ENCRYPT_MODE, publicKey);
-
             byte[] textEncripted = cipherRSA.doFinal(bArray);
 
             Messege messege = new Messege();
