@@ -18,7 +18,7 @@ public class Bob {
         //public key enviar para Alice
 
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-        keyGen.initialize(2048);
+        keyGen.initialize(1024);
         System.out.println("Gerando Key Pair");
         KeyPair keyPair = keyGen.generateKeyPair();
         PublicKey publicKey = keyPair.getPublic();
