@@ -1,4 +1,4 @@
-package br.ufsm.csi.cripto;
+package br.ufsm.csi.cripto.RSA;
 
 import javax.crypto.*;
 import javax.swing.*;
@@ -29,11 +29,11 @@ public class Alice {
             PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
 
             //ENCRYPT FILE
-            Cipher cipherRSA = Cipher.getInstance("RSA");
+            Cipher cipherRSA = Cipher.getInstance("RSA/ECB/PKCS1Padding");
             cipherRSA.init(Cipher.ENCRYPT_MODE, publicKey);
             byte[] textEncripted = cipherRSA.doFinal(bArray);
 
-            Messege messege = new Messege();
+            Message messege = new Message();
             messege.setFileEncript(textEncripted);
             messege.setName(file.getName());
 

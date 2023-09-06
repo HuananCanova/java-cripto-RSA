@@ -1,9 +1,9 @@
-package br.ufsm.csi.cripto;
+package br.ufsm.csi.cripto.RSA;
 
 import javax.crypto.SecretKey;
 import java.io.Serializable;
 
-public class Messege implements Serializable {
+public class Message implements Serializable {
     private String name;
     private byte[] fileEncript;
     private SecretKey secretKey;

@@ -1,4 +1,4 @@
-package br.ufsm.csi.cripto;
+package br.ufsm.csi.cripto.RSA;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -19,6 +19,7 @@ public class Bob {
 
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
         keyGen.initialize(2048);
+        System.out.println("Gerando Key Pair");
         KeyPair keyPair = keyGen.generateKeyPair();
         PublicKey publicKey = keyPair.getPublic();
         PrivateKey privateKey = keyPair.getPrivate();
@@ -34,8 +35,8 @@ public class Bob {
         objectOutputStream.writeObject(publicKeyBytes);
 
         ObjectInputStream objectInputStream = new ObjectInputStream(s.getInputStream());
-        Messege messege = (Messege) objectInputStream.readObject();
-
+        Message messege = (Message) objectInputStream.readObject();
+        System.out.println("RSA");
         Cipher cipherRSA = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipherRSA.init(Cipher.DECRYPT_MODE, privateKey);
 
